@@ -1,0 +1,114 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Pangea
+providerId: pangea
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Security
+- AI Security
+- Authentication
+- Audit Log
+- Data Protection
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Pangea spend. Pangea bills usage-based per service: data
+  scanned for AI Guard / Prompt Guard / Redact / Sanitize, monthly active
+  users for AuthN / AuthZ, log ingestion / search / retention / export
+  operations for Secure Audit Log, per-request (per-provider) lookups for IP /
+  Domain / URL Intel and File Scan, and storage plus operations for Vault and
+  Secure Share. A complimentary monthly balance (documented at ~$5) is applied
+  before pay-as-you-go charges.
+notes: >-
+  Per-service per-unit rates are not fully published on static pages; verify
+  against the Pangea pricing page and project billing console during
+  reconciliation.
+sources:
+- https://pangea.cloud/pricing
+- https://pangea.cloud/docs/admin-guide/organizations/billing/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Pangea
+serviceCategory: Security
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Pangea Security Services
+  ServiceCategory: Security
+  ProviderName: Pangea
+  PublisherName: Pangea
+  InvoiceIssuerName: Pangea
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: data_scanned
+  description: Bytes of content scanned by AI Guard, Prompt Guard, Redact, and Sanitize.
+  unit: bytes
+  aggregation: sum
+  dimensions:
+  - project
+  - service
+- name: monthly_active_users
+  description: Distinct monthly active users billed for AuthN and AuthZ.
+  unit: users
+  aggregation: max
+  dimensions:
+  - project
+  - service
+- name: audit_log_operations
+  description: Secure Audit Log ingestion, search, retention, and export operations.
+  unit: operations
+  aggregation: sum
+  dimensions:
+  - project
+  - operation
+- name: intel_requests
+  description: IP / Domain / URL Intel and File Scan lookups, billed per request per provider.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - project
+  - service
+  - provider
+- name: vault_operations
+  description: Vault and Secure Share stored items and operations (encrypt, decrypt, sign, store).
+  unit: operations
+  aggregation: sum
+  dimensions:
+  - project
+  - service
+- name: stored_items
+  description: Items held in Vault and Secure Share contributing to storage charges.
+  unit: items
+  aggregation: max
+  dimensions:
+  - project
+  - service
+principles:
+- name: Visibility
+  description: Pull Pangea billing exports per project; inspect per-service usage against the monthly balance.
+- name: Allocation
+  description: Use one project or service token per workload/team and map to internal cost centers.
+- name: Optimization
+  description: Right-size recipes (fewer detectors), cache intel lookups, tune audit retention, and scope AuthN to active users.
+- name: Accountability
+  description: Assign an owner per project; review per-service spend monthly against budget and the free-tier balance.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Pangea
+providerId: pangea
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Security
+- AI Security
+- Authentication
+- Audit Log
+- Data Protection
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Pangea enforces per-project, per-service request limits across its security
+  service APIs. Limits are applied per service token and per service host
+  (for example audit.aws.us.pangea.cloud), and are governed by the project's
+  billing tier and configured providers. Bulk endpoints (Secure Audit Log
+  /v2/log, IP Intel /v2/reputation) cap items per request - up to 1000 audit
+  events and up to 100 IPs per call. Specific per-service request-per-second
+  values are not published and are not reconciled in this artifact.
+notes: >-
+  Verify per-service rate limits and per-request item caps in the Pangea
+  documentation and project console during reconciliation; limits vary by
+  service, plan, and configured intelligence provider.
+sources:
+- https://pangea.cloud/docs/
+- https://pangea.cloud/docs/admin-guide/organizations/billing/
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-Service Request Limit
+  scope: project
+  metric: requests
+  limit: see provider documentation
+  notes: Applied per service token and per service host; varies by plan.
+- name: Audit Bulk Log Items
+  scope: request
+  metric: events
+  limit: 1000
+  notes: Maximum events per /v2/log and /v2/log_async request.
+- name: IP Intel Bulk Items
+  scope: request
+  metric: ips
+  limit: 100
+  notes: Maximum IP addresses per /v2/reputation, /v2/geolocate, and related calls.
+- name: AI Guard Text Size
+  scope: request
+  metric: bytes
+  limit: 20480
+  notes: Plain-text input to /v1/text/guard is limited to roughly 20 KiB.
+- name: Intel Provider Limit
+  scope: project
+  metric: requests
+  limit: see provider documentation
+  notes: Intel and File Scan throughput depends on the configured upstream provider.
+policies:
+- name: Free-Tier Balance
+  description: Usage is gated by the complimentary monthly balance before pay-as-you-go billing and any applicable throttling.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

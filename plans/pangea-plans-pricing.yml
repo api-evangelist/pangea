@@ -1,0 +1,157 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Pangea
+providerId: pangea
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Security
+- AI Security
+- Authentication
+- Audit Log
+- Data Protection
+- Plans
+description: >-
+  Pangea uses a pay-as-you-go model with a free tier: projects start with a
+  complimentary monthly balance (a documented ~$5/month credit) and are then
+  billed per service against usage. Each service meters differently - data
+  scanned (AI Guard, Prompt Guard, Redact, Sanitize), monthly active users
+  (AuthN, AuthZ), log operations and retention (Secure Audit Log), requests
+  per provider (IP/Domain/URL Intel, File Scan), and storage plus operations
+  (Vault, Secure Share). There are no fixed Developer / Pro tiers; usage above
+  the free balance is billed at published per-service rates.
+notes: >-
+  Pangea's pricing page loads per-service rate cards dynamically and is not
+  fully reconcilable from static fetches; specific per-unit dollar rates were
+  not captured here. Verify current rates and the free-tier balance on
+  pangea.cloud/pricing and in the project billing console during reconciliation.
+sources:
+- https://pangea.cloud/pricing
+- https://pangea.cloud/docs/admin-guide/organizations/billing/
+plans:
+- id: pangea-free
+  name: Free Tier
+  type: free
+  description: >-
+    Complimentary monthly balance (documented at ~$5/month) applied across all
+    enabled services before pay-as-you-go billing begins.
+  entries:
+  - label: Monthly Complimentary Balance
+    name: free_balance
+    type: free
+    metric: credit
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$5/month complimentary balance (verify current amount)
+    userMultiplied: false
+  elements:
+  - name: All Services (within balance)
+- id: pangea-pay-as-you-go
+  name: Pay-as-you-go
+  type: usage
+  description: >-
+    Per-service usage billing beyond the free balance, metered by the unit
+    appropriate to each service.
+  entries:
+  - label: AI Guard / Prompt Guard
+    name: ai_guard
+    type: usage
+    metric: data_scanned
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per data scanned plus services used in the recipe (see pricing page)
+    userMultiplied: false
+  - label: Redact / Sanitize
+    name: redact
+    type: usage
+    metric: data_scanned
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per data scanned (see pricing page)
+    userMultiplied: false
+  - label: AuthN / AuthZ
+    name: authn
+    type: usage
+    metric: monthly_active_users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per monthly active user plus additional services used
+    userMultiplied: true
+  - label: Secure Audit Log
+    name: audit
+    type: usage
+    metric: log_operations
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per log ingestion, search, retention, and export operations
+    userMultiplied: false
+  - label: Intel Services (IP / Domain / URL Intel, File Scan)
+    name: intel
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per request, varies by configured provider
+    userMultiplied: false
+  - label: Vault / Secure Share
+    name: vault
+    type: usage
+    metric: operations
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per stored item and per operation (see pricing page)
+    userMultiplied: false
+  elements:
+  - name: AI Guard
+  - name: Prompt Guard
+  - name: Redact
+  - name: Sanitize
+  - name: AuthN
+  - name: AuthZ
+  - name: Secure Audit Log
+  - name: IP Intel
+  - name: Domain Intel
+  - name: URL Intel
+  - name: File Scan
+  - name: Vault
+  - name: Secure Share
+- id: pangea-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, regional/CSP deployment options, dedicated support and
+    negotiated terms. Contact Pangea sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Regional / CSP Deployment
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

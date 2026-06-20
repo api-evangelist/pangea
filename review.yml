@@ -1,0 +1,79 @@
+aid: pangea
+name: Pangea
+review:
+  question: Does Pangea expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Pangea's security services are exposed
+    exclusively as request/response REST endpoints (HTTPS POST with a JSON
+    body) per service host. No WebSocket, SSE, or other event-stream transport
+    is documented. The Secure Audit Log has asynchronous operations
+    (/v2/log_async, /v1/export) but these are HTTP request/response with
+    polling, not a streaming transport, so no AsyncAPI surface applies.
+findings:
+  summary: |
+    Pangea does not publish a documented public WebSocket or streaming API.
+    Every security service - AuthN, Secure Audit Log, Redact, Vault, File
+    Scan, IP/Domain/URL Intel, Embargo, Sanitize, AI Guard, Prompt Guard - is
+    reached over HTTPS at its own host following the pattern
+    https://{service}.{csp}.{geo}.pangea.cloud (for example
+    https://redact.aws.us.pangea.cloud). All documented operations are POST
+    requests authenticated with a Bearer service token or OAuth 2 access
+    token. A few audit operations are asynchronous (return 202 and are polled
+    via request IDs) but remain HTTP request/response, not WebSocket or SSE.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://{service}.{csp}.{geo}.pangea.cloud
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in any Pangea service API reference as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming transport is documented; asynchronous audit operations use polling, not SSE.
+  endpointsConfirmedRest:
+    - POST https://authn.aws.us.pangea.cloud/v2/user/create
+    - POST https://authn.aws.us.pangea.cloud/v2/user/list
+    - POST https://authn.aws.us.pangea.cloud/v2/flow/start
+    - POST https://authn.aws.us.pangea.cloud/v2/client/session/refresh
+    - POST https://audit.aws.us.pangea.cloud/v1/log
+    - POST https://audit.aws.us.pangea.cloud/v2/log
+    - POST https://audit.aws.us.pangea.cloud/v1/search
+    - POST https://audit.aws.us.pangea.cloud/v1/root
+    - POST https://redact.aws.us.pangea.cloud/v1/redact
+    - POST https://redact.aws.us.pangea.cloud/v1/redact_structured
+    - POST https://vault.aws.us.pangea.cloud/v2/encrypt
+    - POST https://vault.aws.us.pangea.cloud/v2/decrypt
+    - POST https://vault.aws.us.pangea.cloud/v2/secret/store
+    - POST https://file-scan.aws.us.pangea.cloud/v1/scan
+    - POST https://ip-intel.aws.us.pangea.cloud/v2/reputation
+    - POST https://ip-intel.aws.us.pangea.cloud/v2/geolocate
+    - POST https://domain-intel.aws.us.pangea.cloud/v1/reputation
+    - POST https://ai-guard.aws.us.pangea.cloud/v1/text/guard
+sources:
+  - url: https://pangea.cloud/docs/api/
+    type: APIReference
+    note: Documents the https://{service}.{csp}.{geo}.pangea.cloud REST URI pattern with Bearer auth; no WebSocket mentioned.
+  - url: https://pangea.cloud/docs/api/audit
+    type: APIReference
+    note: All audit operations are HTTPS POST; async log/export return request IDs for polling, not a stream.
+  - url: https://pangea.cloud/docs/api/ai-guard
+    type: APIReference
+    note: AI Guard text/guard is a synchronous HTTPS POST request/response endpoint.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or streaming protocol surface exists. All Pangea services are
+    request/response REST, so no AsyncAPI document was authored. The apis.yml
+    catalog references the OpenAPI specification and collections for the
+    documented REST surface.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

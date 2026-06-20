@@ -1,0 +1,221 @@
+aid: pangea
+url: https://raw.githubusercontent.com/api-evangelist/pangea/refs/heads/main/apis.yml
+name: Pangea
+kind: company
+description: Pangea delivers security as a set of composable, API-first services -
+  authentication (AuthN/AuthZ), tamper-proof Secure Audit Log, Redact, Vault, File
+  Scan, URL/Domain/IP Intel, Embargo, Sanitize, and AI Guard / Prompt Guard - that
+  developers call over REST with a Bearer service token to add security guardrails
+  to applications and AI workloads.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Security
+- AI Security
+- Authentication
+- Audit Log
+- Data Protection
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: pangea:authn
+  name: Pangea AuthN API
+  tags:
+  - Authentication
+  - Identity
+  - Sessions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/authn
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/authn
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Hosted user authentication and identity - sign-up/sign-in flows, user
+    lifecycle, session and client-token management, and JWKS - exposed as REST and
+    secured with a Bearer service token.
+- aid: pangea:secure-audit-log
+  name: Pangea Secure Audit Log API
+  tags:
+  - Audit Log
+  - Tamper Proof
+  - Compliance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/audit
+  baseURL: https://audit.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/audit
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/audit
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Tamper-proof, cryptographically verifiable audit logging with Merkle-tree
+    membership and consistency proofs, log entry creation, search, results paging,
+    and export.
+- aid: pangea:redact
+  name: Pangea Redact API
+  tags:
+  - Redaction
+  - PII
+  - Data Protection
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/redact
+  baseURL: https://redact.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/redact
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/redact
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Detect and remove sensitive information (PII, secrets) from text and
+    structured data using configurable rulesets, with format-preserving encryption
+    and unredact support.
+- aid: pangea:vault
+  name: Pangea Vault API
+  tags:
+  - Secrets
+  - Key Management
+  - Encryption
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/vault
+  baseURL: https://vault.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/vault
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/vault
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Secure storage and lifecycle management for secrets and cryptographic
+    keys with encrypt/decrypt, sign/verify, rotation, and JWT/JWK operations.
+- aid: pangea:file-scan
+  name: Pangea File Scan API
+  tags:
+  - File Scan
+  - Malware
+  - Threat Detection
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/file-scan
+  baseURL: https://file-scan.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/file-scan
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/file-scan
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Scan uploaded files (PE, Mach-O, ELF, Office, PDF, ZIP) for malicious
+    content using configured threat-detection providers, returning a verdict, score,
+    and category.
+- aid: pangea:ip-intel
+  name: Pangea IP Intel API
+  tags:
+  - Threat Intel
+  - IP Reputation
+  - Geolocation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/ip-intel
+  baseURL: https://ip-intel.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/ip-intel
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/ip-intel
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: IP address threat intelligence - reputation scoring, geolocation, and
+    VPN/proxy/domain enrichment - drawn from multiple providers and normalized to a
+    Pangea verdict and score.
+- aid: pangea:domain-intel
+  name: Pangea Domain & URL Intel API
+  tags:
+  - Threat Intel
+  - Domain Reputation
+  - URL Reputation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/domain-intel
+  baseURL: https://domain-intel.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/domain-intel
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/domain-intel
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Reputation lookups for domains and URLs against threat-intelligence
+    providers, returning normalized verdicts, scores, and categories to flag malicious
+    indicators.
+- aid: pangea:ai-guard
+  name: Pangea AI Guard & Prompt Guard API
+  tags:
+  - AI Security
+  - Prompt Injection
+  - LLM Guardrails
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://pangea.cloud/docs/api/ai-guard
+  baseURL: https://ai-guard.aws.us.pangea.cloud
+  properties:
+  - url: https://pangea.cloud/docs/ai-guard
+    type: Documentation
+  - url: https://pangea.cloud/docs/api/ai-guard
+    type: APIReference
+  - url: openapi/pangea-openapi.yml
+    type: OpenAPI
+  - url: collections/pangea.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pangea.opencollection.json
+    type: OpenCollection
+  description: Detect, redact, or block malicious content and intent in LLM inputs
+    and outputs - prompt injection, PII, secrets, and malicious entities - via configurable
+    recipes to guard AI applications.
+common:
+- type: GitHubOrganization
+  url: https://github.com/pangeacyber
+- type: LinkedIn
+  url: https://www.linkedin.com/company/pangeacyber
+- type: Website
+  url: https://pangea.cloud/
+- type: Documentation
+  url: https://pangea.cloud/docs/
+- type: Plans
+  url: plans/pangea-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/pangea-rate-limits.yml
+- type: FinOps
+  url: finops/pangea-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
