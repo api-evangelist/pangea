@@ -202,6 +202,14 @@ apis:
     and outputs - prompt injection, PII, secrets, and malicious entities - via configurable
     recipes to guard AI applications.
 common:
+- type: TrustCenter
+  url: security/pangea-trust-center.yml
+- type: DomainSecurity
+  url: security/pangea-domain-security.yml
+- type: Authentication
+  url: authentication/pangea-authentication.yml
+- url: https://pangea.cloud/blog
+  type: Blog
 - type: GitHubOrganization
   url: https://github.com/pangeacyber
 - type: LinkedIn

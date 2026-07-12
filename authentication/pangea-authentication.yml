@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pangea-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Pangea service token or OAuth 2 access token passed as a Bearer token.
+  sources:
+  - openapi/pangea-openapi.yml
