@@ -202,6 +202,8 @@ apis:
     and outputs - prompt injection, PII, secrets, and malicious entities - via configurable
     recipes to guard AI applications.
 common:
+- type: AgenticAccess
+  url: agentic-access/pangea-agentic-access.yml
 - type: TrustCenter
   url: security/pangea-trust-center.yml
 - type: DomainSecurity
