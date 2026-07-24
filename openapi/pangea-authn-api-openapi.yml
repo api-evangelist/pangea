@@ -1,0 +1,242 @@
+openapi: 3.0.1
+info:
+  title: Pangea Security Services AI Guard AuthN API
+  description: Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.
+  termsOfService: https://pangea.cloud/legal/terms-of-service/
+  contact:
+    name: Pangea Support
+    url: https://pangea.cloud/contact/
+  version: '1.0'
+servers:
+- url: https://{service}.{csp}.{geo}.pangea.cloud
+  description: Per-service Pangea host. Each service is reached at its own subdomain.
+  variables:
+    service:
+      default: redact
+      description: Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).
+    csp:
+      default: aws
+      description: Cloud service provider hosting the service.
+    geo:
+      default: us
+      description: Geographic region (us, eu).
+security:
+- bearerAuth: []
+tags:
+- name: AuthN
+  description: Hosted authentication, user lifecycle, and session management.
+paths:
+  /v2/user/create:
+    servers:
+    - url: https://authn.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: authnUserCreate
+      tags:
+      - AuthN
+      summary: Create a user.
+      description: Create a new user account in the project's AuthN instance.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '200':
+          description: User created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/user/list:
+    servers:
+    - url: https://authn.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: authnUserList
+      tags:
+      - AuthN
+      summary: List users.
+      description: Look up users by scope and return a paginated list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserListRequest'
+      responses:
+        '200':
+          description: A page of users.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/flow/start:
+    servers:
+    - url: https://authn.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: authnFlowStart
+      tags:
+      - AuthN
+      summary: Start a sign-up / sign-in flow.
+      description: Initiate a new authentication flow and return the available flow choices.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cb_uri:
+                  type: string
+                  description: Callback URI for the redirect-based flow.
+                email:
+                  type: string
+                flow_types:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - signin
+                    - signup
+      responses:
+        '200':
+          description: Flow started.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/client/session/refresh:
+    servers:
+    - url: https://authn.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: authnClientSessionRefresh
+      tags:
+      - AuthN
+      summary: Refresh a session.
+      description: Refresh a session token using a refresh token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - refresh_token
+              properties:
+                refresh_token:
+                  type: string
+                user_token:
+                  type: string
+      responses:
+        '200':
+          description: Session refreshed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    UserListRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+        last:
+          type: string
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+        size:
+          type: integer
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
+    UserResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              id:
+                type: string
+              email:
+                type: string
+              profile:
+                type: object
+              verified:
+                type: boolean
+              disabled:
+                type: boolean
+    UserCreateRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+        profile:
+          type: object
+          additionalProperties:
+            type: string
+        username:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pangea service token or OAuth 2 access token passed as a Bearer token.

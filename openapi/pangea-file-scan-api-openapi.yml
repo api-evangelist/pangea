@@ -1,0 +1,136 @@
+openapi: 3.0.1
+info:
+  title: Pangea Security Services AI Guard File Scan API
+  description: Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.
+  termsOfService: https://pangea.cloud/legal/terms-of-service/
+  contact:
+    name: Pangea Support
+    url: https://pangea.cloud/contact/
+  version: '1.0'
+servers:
+- url: https://{service}.{csp}.{geo}.pangea.cloud
+  description: Per-service Pangea host. Each service is reached at its own subdomain.
+  variables:
+    service:
+      default: redact
+      description: Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).
+    csp:
+      default: aws
+      description: Cloud service provider hosting the service.
+    geo:
+      default: us
+      description: Geographic region (us, eu).
+security:
+- bearerAuth: []
+tags:
+- name: File Scan
+  description: Scan files for malicious content.
+paths:
+  /v1/scan:
+    servers:
+    - url: https://file-scan.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: fileScan
+      tags:
+      - File Scan
+      summary: Scan a file.
+      description: Scan a file for malicious content using the configured provider.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileScanRequest'
+      responses:
+        '200':
+          description: Scan verdict.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntelResponse'
+        '202':
+          description: Accepted - scan running asynchronously.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    FileScanRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+        verbose:
+          type: boolean
+        raw:
+          type: boolean
+        transfer_method:
+          type: string
+          enum:
+          - direct
+          - multipart
+          - post-url
+          - source-url
+        sha256:
+          type: string
+        size:
+          type: integer
+        source_url:
+          type: string
+    IntelResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  verdict:
+                    type: string
+                    example: malicious
+                  score:
+                    type: integer
+                  category:
+                    type: array
+                    items:
+                      type: string
+              raw_data:
+                type: object
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pangea service token or OAuth 2 access token passed as a Bearer token.

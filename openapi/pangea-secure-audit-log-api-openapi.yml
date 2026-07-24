@@ -1,0 +1,267 @@
+openapi: 3.0.1
+info:
+  title: Pangea Security Services AI Guard Secure Audit Log API
+  description: Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.
+  termsOfService: https://pangea.cloud/legal/terms-of-service/
+  contact:
+    name: Pangea Support
+    url: https://pangea.cloud/contact/
+  version: '1.0'
+servers:
+- url: https://{service}.{csp}.{geo}.pangea.cloud
+  description: Per-service Pangea host. Each service is reached at its own subdomain.
+  variables:
+    service:
+      default: redact
+      description: Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).
+    csp:
+      default: aws
+      description: Cloud service provider hosting the service.
+    geo:
+      default: us
+      description: Geographic region (us, eu).
+security:
+- bearerAuth: []
+tags:
+- name: Secure Audit Log
+  description: Tamper-proof, cryptographically verifiable audit logging.
+paths:
+  /v1/log:
+    servers:
+    - url: https://audit.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: auditLog
+      tags:
+      - Secure Audit Log
+      summary: Log an entry.
+      description: Create a log entry in the Secure Audit Log.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogRequest'
+      responses:
+        '200':
+          description: Entry logged with cryptographic proof material.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/log:
+    servers:
+    - url: https://audit.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: auditLogBulk
+      tags:
+      - Secure Audit Log
+      summary: Log multiple entries.
+      description: Create up to 1000 log entries in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - events
+              properties:
+                events:
+                  type: array
+                  minItems: 1
+                  maxItems: 1000
+                  items:
+                    $ref: '#/components/schemas/AuditEvent'
+                verbose:
+                  type: boolean
+                config_id:
+                  type: string
+      responses:
+        '200':
+          description: Entries logged.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/search:
+    servers:
+    - url: https://audit.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: auditSearch
+      tags:
+      - Secure Audit Log
+      summary: Search the audit log.
+      description: Search the Secure Audit Log and return matching, verifiable events.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditSearchRequest'
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/root:
+    servers:
+    - url: https://audit.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: auditRoot
+      tags:
+      - Secure Audit Log
+      summary: Get the Merkle tree root.
+      description: Return the current root hash and consistency proof for verification.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tree_size:
+                  type: integer
+                config_id:
+                  type: string
+      responses:
+        '200':
+          description: Root hash and proof.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    AuditLogResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              hash:
+                type: string
+              unpublished_root:
+                type: string
+              membership_proof:
+                type: string
+              consistency_proof:
+                type: array
+                items:
+                  type: string
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
+    AuditEvent:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Main log message.
+        actor:
+          type: string
+        action:
+          type: string
+        target:
+          type: string
+        status:
+          type: string
+        source:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    AuditSearchRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        max_results:
+          type: integer
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+        config_id:
+          type: string
+    AuditLogRequest:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/AuditEvent'
+        verbose:
+          type: boolean
+        signature:
+          type: string
+        public_key:
+          type: string
+        config_id:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pangea service token or OAuth 2 access token passed as a Bearer token.

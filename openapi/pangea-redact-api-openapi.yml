@@ -1,0 +1,172 @@
+openapi: 3.0.1
+info:
+  title: Pangea Security Services AI Guard Redact API
+  description: Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.
+  termsOfService: https://pangea.cloud/legal/terms-of-service/
+  contact:
+    name: Pangea Support
+    url: https://pangea.cloud/contact/
+  version: '1.0'
+servers:
+- url: https://{service}.{csp}.{geo}.pangea.cloud
+  description: Per-service Pangea host. Each service is reached at its own subdomain.
+  variables:
+    service:
+      default: redact
+      description: Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).
+    csp:
+      default: aws
+      description: Cloud service provider hosting the service.
+    geo:
+      default: us
+      description: Geographic region (us, eu).
+security:
+- bearerAuth: []
+tags:
+- name: Redact
+  description: Detect and remove sensitive information from text and structured data.
+paths:
+  /v1/redact:
+    servers:
+    - url: https://redact.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: redactText
+      tags:
+      - Redact
+      summary: Redact text.
+      description: Redact sensitive information from provided text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedactRequest'
+      responses:
+        '200':
+          description: Redacted text and report.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/redact_structured:
+    servers:
+    - url: https://redact.{csp}.{geo}.pangea.cloud
+      variables:
+        csp:
+          default: aws
+        geo:
+          default: us
+    post:
+      operationId: redactStructured
+      tags:
+      - Redact
+      summary: Redact structured data.
+      description: Redact sensitive information from structured data such as JSON.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+                  description: Structured content to redact.
+                jsonp:
+                  type: array
+                  items:
+                    type: string
+                  description: JSON paths to fields to redact.
+                format:
+                  type: string
+                rulesets:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Redacted structured data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PangeaResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    RedactResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              redacted_text:
+                type: string
+              count:
+                type: integer
+              report:
+                type: object
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
+    RedactRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: The content to redact.
+        config_id:
+          type: string
+        rules:
+          type: array
+          items:
+            type: string
+        rulesets:
+          type: array
+          items:
+            type: string
+        return_result:
+          type: boolean
+        debug:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pangea service token or OAuth 2 access token passed as a Bearer token.
