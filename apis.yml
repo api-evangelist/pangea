@@ -7,7 +7,20 @@ description: Pangea delivers security as a set of composable, API-first services
   Scan, URL/Domain/IP Intel, Embargo, Sanitize, and AI Guard / Prompt Guard - that
   developers call over REST with a Bearer service token to add security guardrails
   to applications and AI workloads.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pangea.png
 tags:
 - Security
 - AI Security
@@ -18,189 +31,374 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: pangea:authn
-  name: Pangea AuthN API
-  tags:
-  - Authentication
-  - Identity
-  - Sessions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: pangea:pangea-ai-guard-api
+  name: Pangea AI Guard API
+  description: Detect and redact malicious content in LLM inputs and outputs.
   humanURL: https://pangea.cloud/docs/api/authn
   baseURL: https://authn.aws.us.pangea.cloud
-  properties:
-  - url: https://pangea.cloud/docs/authn
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/authn
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Hosted user authentication and identity - sign-up/sign-in flows, user
-    lifecycle, session and client-token management, and JWKS - exposed as REST and
-    secured with a Bearer service token.
-- aid: pangea:secure-audit-log
-  name: Pangea Secure Audit Log API
   tags:
-  - Audit Log
-  - Tamper Proof
-  - Compliance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/audit
-  baseURL: https://audit.aws.us.pangea.cloud
+  - AI Guard
   properties:
-  - url: https://pangea.cloud/docs/audit
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/audit
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Tamper-proof, cryptographically verifiable audit logging with Merkle-tree
-    membership and consistency proofs, log entry creation, search, results paging,
-    and export.
-- aid: pangea:redact
-  name: Pangea Redact API
+  - type: OpenAPI
+    url: openapi/pangea-ai-guard-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-authn-api
+  name: Pangea AuthN API
+  description: Hosted authentication, user lifecycle, and session management.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
   tags:
-  - Redaction
-  - PII
-  - Data Protection
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/redact
-  baseURL: https://redact.aws.us.pangea.cloud
+  - AuthN
   properties:
-  - url: https://pangea.cloud/docs/redact
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/redact
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Detect and remove sensitive information (PII, secrets) from text and
-    structured data using configurable rulesets, with format-preserving encryption
-    and unredact support.
-- aid: pangea:vault
-  name: Pangea Vault API
+  - type: OpenAPI
+    url: openapi/pangea-authn-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-domain-intel-api
+  name: Pangea Domain Intel API
+  description: Domain and URL reputation lookups.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
   tags:
-  - Secrets
-  - Key Management
-  - Encryption
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/vault
-  baseURL: https://vault.aws.us.pangea.cloud
+  - Domain Intel
   properties:
-  - url: https://pangea.cloud/docs/vault
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/vault
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Secure storage and lifecycle management for secrets and cryptographic
-    keys with encrypt/decrypt, sign/verify, rotation, and JWT/JWK operations.
-- aid: pangea:file-scan
+  - type: OpenAPI
+    url: openapi/pangea-domain-intel-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-file-scan-api
   name: Pangea File Scan API
+  description: Scan files for malicious content.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
   tags:
   - File Scan
-  - Malware
-  - Threat Detection
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/file-scan
-  baseURL: https://file-scan.aws.us.pangea.cloud
   properties:
-  - url: https://pangea.cloud/docs/file-scan
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/file-scan
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Scan uploaded files (PE, Mach-O, ELF, Office, PDF, ZIP) for malicious
-    content using configured threat-detection providers, returning a verdict, score,
-    and category.
-- aid: pangea:ip-intel
+  - type: OpenAPI
+    url: openapi/pangea-file-scan-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-ip-intel-api
   name: Pangea IP Intel API
+  description: IP reputation, geolocation, and VPN/proxy enrichment.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
   tags:
-  - Threat Intel
-  - IP Reputation
-  - Geolocation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/ip-intel
-  baseURL: https://ip-intel.aws.us.pangea.cloud
+  - IP Intel
   properties:
-  - url: https://pangea.cloud/docs/ip-intel
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/ip-intel
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: IP address threat intelligence - reputation scoring, geolocation, and
-    VPN/proxy/domain enrichment - drawn from multiple providers and normalized to a
-    Pangea verdict and score.
-- aid: pangea:domain-intel
-  name: Pangea Domain & URL Intel API
+  - type: OpenAPI
+    url: openapi/pangea-ip-intel-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-redact-api
+  name: Pangea Redact API
+  description: Detect and remove sensitive information from text and structured data.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
   tags:
-  - Threat Intel
-  - Domain Reputation
-  - URL Reputation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/domain-intel
-  baseURL: https://domain-intel.aws.us.pangea.cloud
+  - Redact
   properties:
-  - url: https://pangea.cloud/docs/domain-intel
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/domain-intel
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Reputation lookups for domains and URLs against threat-intelligence
-    providers, returning normalized verdicts, scores, and categories to flag malicious
-    indicators.
-- aid: pangea:ai-guard
-  name: Pangea AI Guard & Prompt Guard API
+  - type: OpenAPI
+    url: openapi/pangea-redact-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-secure-audit-log-api
+  name: Pangea Secure Audit Log API
+  description: Tamper-proof, cryptographically verifiable audit logging.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
   tags:
-  - AI Security
-  - Prompt Injection
-  - LLM Guardrails
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://pangea.cloud/docs/api/ai-guard
-  baseURL: https://ai-guard.aws.us.pangea.cloud
+  - Secure Audit Log
   properties:
-  - url: https://pangea.cloud/docs/ai-guard
-    type: Documentation
-  - url: https://pangea.cloud/docs/api/ai-guard
-    type: APIReference
-  - url: openapi/pangea-openapi.yml
-    type: OpenAPI
-  - url: collections/pangea.postman_collection.json
-    type: PostmanCollection
-  - url: collections/pangea.opencollection.json
-    type: OpenCollection
-  description: Detect, redact, or block malicious content and intent in LLM inputs
-    and outputs - prompt injection, PII, secrets, and malicious entities - via configurable
-    recipes to guard AI applications.
+  - type: OpenAPI
+    url: openapi/pangea-secure-audit-log-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
+- aid: pangea:pangea-vault-api
+  name: Pangea Vault API
+  description: Secrets and cryptographic key management.
+  humanURL: https://pangea.cloud/docs/api/authn
+  baseURL: https://authn.aws.us.pangea.cloud
+  tags:
+  - Vault
+  properties:
+  - type: OpenAPI
+    url: openapi/pangea-vault-api-openapi.yml
+  - type: Documentation
+    url: https://pangea.cloud/docs/authn
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/authn
+  - type: PostmanCollection
+    url: collections/pangea.postman_collection.json
+  - type: OpenCollection
+    url: collections/pangea.opencollection.json
+  - type: Documentation
+    url: https://pangea.cloud/docs/audit
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/audit
+  - type: Documentation
+    url: https://pangea.cloud/docs/redact
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/redact
+  - type: Documentation
+    url: https://pangea.cloud/docs/vault
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/vault
+  - type: Documentation
+    url: https://pangea.cloud/docs/file-scan
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/file-scan
+  - type: Documentation
+    url: https://pangea.cloud/docs/ip-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ip-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/domain-intel
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/domain-intel
+  - type: Documentation
+    url: https://pangea.cloud/docs/ai-guard
+  - type: APIReference
+    url: https://pangea.cloud/docs/api/ai-guard
 common:
 - type: AgenticAccess
   url: agentic-access/pangea-agentic-access.yml
