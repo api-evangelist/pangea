@@ -1,0 +1,368 @@
+{
+  "item": [
+    {
+      "id": "15740d76-60bc-41fd-a25f-75eecac2a2b5",
+      "name": "File Scan",
+      "description": {
+        "content": "Scan files for malicious content.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ad1e941-693d-4882-894f-04aa46a35517",
+          "name": "Scan a file.",
+          "request": {
+            "name": "Scan a file.",
+            "description": {
+              "content": "Scan a file for malicious content using the configured provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "scan"
+              ],
+              "host": [
+                "{{v1-scan-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                  "type": "any",
+                  "value": "{{service}}",
+                  "key": "service"
+                },
+                {
+                  "description": "Cloud service provider hosting the service.",
+                  "type": "any",
+                  "value": "{{csp}}",
+                  "key": "csp"
+                },
+                {
+                  "description": "Geographic region (us, eu).",
+                  "type": "any",
+                  "value": "{{geo}}",
+                  "key": "geo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\",\n  \"transfer_method\": \"<string>\",\n  \"sha256\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"source_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4ca091a-1b75-4002-a788-1a4ecba49bbd",
+              "name": "Scan verdict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{v1-scan-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\",\n  \"transfer_method\": \"<string>\",\n  \"sha256\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"source_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1969-12-08T23:44:56.192Z\",\n  \"response_time\": \"1966-05-22T05:04:15.779Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {\n    \"data\": {\n      \"verdict\": \"malicious\",\n      \"score\": 6085,\n      \"category\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"raw_data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71624420-f72c-40a6-bfe0-2e48341cfd25",
+              "name": "Accepted - scan running asynchronously.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{v1-scan-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\",\n  \"transfer_method\": \"<string>\",\n  \"sha256\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"source_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5548022-7102-4fa1-821f-0894b58687d9",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{v1-scan-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\",\n  \"transfer_method\": \"<string>\",\n  \"sha256\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"source_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"2010-07-05T08:01:03.595Z\",\n  \"response_time\": \"1969-02-08T01:20:23.139Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "redact",
+      "key": "service"
+    },
+    {
+      "description": {
+        "content": "Cloud service provider hosting the service.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "Geographic region (us, eu).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://{{service}}.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "baseUrl"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://file-scan.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "v1-scan-Url"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6fbb3aea-ccad-4e6a-b50d-dd7bb4ede287",
+    "name": "Pangea Security Services AI Guard File Scan API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.\n\nContact Support:\n Name: Pangea Support",
+      "type": "text/plain"
+    }
+  }
+}

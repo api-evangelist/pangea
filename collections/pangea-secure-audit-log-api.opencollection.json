@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pangea Security Services AI Guard Secure Audit Log API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Secure Audit Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Log an entry.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v1/log",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a log entry in the Secure Audit Log."
+        },
+        {
+          "info": {
+            "name": "Log multiple entries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/log",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create up to 1000 log entries in a single request."
+        },
+        {
+          "info": {
+            "name": "Search the audit log.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v1/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search the Secure Audit Log and return matching, verifiable events."
+        },
+        {
+          "info": {
+            "name": "Get the Merkle tree root.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v1/root",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the current root hash and consistency proof for verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

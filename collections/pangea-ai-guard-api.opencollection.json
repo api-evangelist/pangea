@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pangea Security Services AI Guard API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AI Guard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Guard LLM text.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v1/text/guard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Detect, remove, or block malicious content and intent in LLM inputs and outputs to prevent model manipulation and data leakage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

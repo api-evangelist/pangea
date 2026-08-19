@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pangea Security Services AI Guard IP Intel API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IP Intel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IP reputation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/reputation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a reputation score and verdict for one or more IP addresses."
+        },
+        {
+          "info": {
+            "name": "Geolocate an IP.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/geolocate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve geographic location information for one or more IP addresses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

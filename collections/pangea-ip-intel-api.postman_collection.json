@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "8ac763f8-d72d-4f92-9dfb-6ccac0a1b4c0",
+      "name": "IP Intel",
+      "description": {
+        "content": "IP reputation, geolocation, and VPN/proxy enrichment.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88cb270d-e858-4b98-85c1-35a26945db15",
+          "name": "Get IP reputation.",
+          "request": {
+            "name": "Get IP reputation.",
+            "description": {
+              "content": "Retrieve a reputation score and verdict for one or more IP addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "reputation"
+              ],
+              "host": [
+                "{{v2-reputation-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                  "type": "any",
+                  "value": "{{service}}",
+                  "key": "service"
+                },
+                {
+                  "description": "Cloud service provider hosting the service.",
+                  "type": "any",
+                  "value": "{{csp}}",
+                  "key": "csp"
+                },
+                {
+                  "description": "Geographic region (us, eu).",
+                  "type": "any",
+                  "value": "{{geo}}",
+                  "key": "geo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ips\": [\n    \"<string>\"\n  ],\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0bec2ab-9a58-4f49-bb66-36be6ee921da",
+              "name": "Reputation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reputation"
+                  ],
+                  "host": [
+                    "{{v2-reputation-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ips\": [\n    \"<string>\"\n  ],\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"2019-03-31T05:52:17.302Z\",\n  \"response_time\": \"2010-09-11T11:28:01.399Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {\n    \"data\": {\n      \"verdict\": \"malicious\",\n      \"score\": 7314,\n      \"category\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"raw_data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3abe9a87-2dea-48a4-bdff-f6a882929a29",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reputation"
+                  ],
+                  "host": [
+                    "{{v2-reputation-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ips\": [\n    \"<string>\"\n  ],\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1993-11-11T18:44:29.802Z\",\n  \"response_time\": \"1967-08-05T05:44:08.708Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d765ced-c2e2-4170-96ae-02f9b6718f00",
+          "name": "Geolocate an IP.",
+          "request": {
+            "name": "Geolocate an IP.",
+            "description": {
+              "content": "Retrieve geographic location information for one or more IP addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "geolocate"
+              ],
+              "host": [
+                "{{v2-geolocate-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                  "type": "any",
+                  "value": "{{service}}",
+                  "key": "service"
+                },
+                {
+                  "description": "Cloud service provider hosting the service.",
+                  "type": "any",
+                  "value": "{{csp}}",
+                  "key": "csp"
+                },
+                {
+                  "description": "Geographic region (us, eu).",
+                  "type": "any",
+                  "value": "{{geo}}",
+                  "key": "geo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ips\": [\n    \"<string>\"\n  ],\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f005877-2e04-4f1b-896d-2647884c8710",
+              "name": "Geolocation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "geolocate"
+                  ],
+                  "host": [
+                    "{{v2-geolocate-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ips\": [\n    \"<string>\"\n  ],\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1958-01-05T18:51:43.069Z\",\n  \"response_time\": \"1999-09-05T02:33:01.120Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {\n    \"data\": {\n      \"verdict\": \"malicious\",\n      \"score\": 6754,\n      \"category\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"raw_data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59ab0347-370e-45fe-a5db-a69f2c278f16",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "geolocate"
+                  ],
+                  "host": [
+                    "{{v2-geolocate-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ips\": [\n    \"<string>\"\n  ],\n  \"provider\": \"<string>\",\n  \"verbose\": \"<boolean>\",\n  \"raw\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1993-11-11T18:44:29.802Z\",\n  \"response_time\": \"1967-08-05T05:44:08.708Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "redact",
+      "key": "service"
+    },
+    {
+      "description": {
+        "content": "Cloud service provider hosting the service.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "Geographic region (us, eu).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://{{service}}.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "baseUrl"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://ip-intel.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "v2-reputation-Url"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://ip-intel.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "v2-geolocate-Url"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dcbb2086-af63-40aa-87e1-c0377bb35b93",
+    "name": "Pangea Security Services AI Guard IP Intel API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.\n\nContact Support:\n Name: Pangea Support",
+      "type": "text/plain"
+    }
+  }
+}

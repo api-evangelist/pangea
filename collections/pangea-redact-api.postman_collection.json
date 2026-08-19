@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "aa94cb51-f176-4d98-9bc2-f34b03192349",
+      "name": "Redact",
+      "description": {
+        "content": "Detect and remove sensitive information from text and structured data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0e3a03e-10d4-4c87-b7c5-08c93ebabd74",
+          "name": "Redact text.",
+          "request": {
+            "name": "Redact text.",
+            "description": {
+              "content": "Redact sensitive information from provided text.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "redact"
+              ],
+              "host": [
+                "{{v1-redact-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                  "type": "any",
+                  "value": "{{service}}",
+                  "key": "service"
+                },
+                {
+                  "description": "Cloud service provider hosting the service.",
+                  "type": "any",
+                  "value": "{{csp}}",
+                  "key": "csp"
+                },
+                {
+                  "description": "Geographic region (us, eu).",
+                  "type": "any",
+                  "value": "{{geo}}",
+                  "key": "geo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"config_id\": \"<string>\",\n  \"rules\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rulesets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"return_result\": \"<boolean>\",\n  \"debug\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "533c7020-939e-4a71-b1c5-2a6c07f25056",
+              "name": "Redacted text and report.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "redact"
+                  ],
+                  "host": [
+                    "{{v1-redact-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"config_id\": \"<string>\",\n  \"rules\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rulesets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"return_result\": \"<boolean>\",\n  \"debug\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1949-12-31T02:59:21.407Z\",\n  \"response_time\": \"2002-09-03T16:31:25.782Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {\n    \"redacted_text\": \"string\",\n    \"count\": 8205,\n    \"report\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aade8c83-140e-4260-9ff6-b2b7acdabbec",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "redact"
+                  ],
+                  "host": [
+                    "{{v1-redact-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"config_id\": \"<string>\",\n  \"rules\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rulesets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"return_result\": \"<boolean>\",\n  \"debug\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1998-07-03T02:23:21.134Z\",\n  \"response_time\": \"2025-05-10T19:46:15.345Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7095802d-9fd8-437a-8ca2-1013c2f8f783",
+          "name": "Redact structured data.",
+          "request": {
+            "name": "Redact structured data.",
+            "description": {
+              "content": "Redact sensitive information from structured data such as JSON.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "redact_structured"
+              ],
+              "host": [
+                "{{v1-redact_structured-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                  "type": "any",
+                  "value": "{{service}}",
+                  "key": "service"
+                },
+                {
+                  "description": "Cloud service provider hosting the service.",
+                  "type": "any",
+                  "value": "{{csp}}",
+                  "key": "csp"
+                },
+                {
+                  "description": "Geographic region (us, eu).",
+                  "type": "any",
+                  "value": "{{geo}}",
+                  "key": "geo"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<object>\",\n  \"jsonp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"format\": \"<string>\",\n  \"rulesets\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78220289-4e7b-40d2-9df9-9e04c207bcd2",
+              "name": "Redacted structured data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "redact_structured"
+                  ],
+                  "host": [
+                    "{{v1-redact_structured-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<object>\",\n  \"jsonp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"format\": \"<string>\",\n  \"rulesets\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1998-07-03T02:23:21.134Z\",\n  \"response_time\": \"2025-05-10T19:46:15.345Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e3741b8-f1df-45df-a6cb-a8666d4cb41c",
+              "name": "Missing or invalid authentication token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "redact_structured"
+                  ],
+                  "host": [
+                    "{{v1-redact_structured-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+                      "type": "any",
+                      "value": "{{service}}",
+                      "key": "service"
+                    },
+                    {
+                      "description": "Cloud service provider hosting the service.",
+                      "type": "any",
+                      "value": "{{csp}}",
+                      "key": "csp"
+                    },
+                    {
+                      "description": "Geographic region (us, eu).",
+                      "type": "any",
+                      "value": "{{geo}}",
+                      "key": "geo"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<object>\",\n  \"jsonp\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"format\": \"<string>\",\n  \"rulesets\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"request_time\": \"1998-07-03T02:23:21.134Z\",\n  \"response_time\": \"2025-05-10T19:46:15.345Z\",\n  \"status\": \"Success\",\n  \"summary\": \"string\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Service name (authn, audit, redact, vault, file-scan, ip-intel, domain-intel, ai-guard).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "redact",
+      "key": "service"
+    },
+    {
+      "description": {
+        "content": "Cloud service provider hosting the service.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "Geographic region (us, eu).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://{{service}}.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "baseUrl"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://redact.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "v1-redact-Url"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "aws",
+      "key": "csp"
+    },
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "geo"
+    },
+    {
+      "type": "string",
+      "value": "https://redact.{{csp}}.{{geo}}.pangea.cloud",
+      "key": "v1-redact_structured-Url"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2d8115db-2fbd-4f78-b02f-05595f08f096",
+    "name": "Pangea Security Services AI Guard Redact API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.\n\nContact Support:\n Name: Pangea Support",
+      "type": "text/plain"
+    }
+  }
+}

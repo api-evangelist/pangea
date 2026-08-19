@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pangea Security Services AI Guard File Scan API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Scan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scan a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v1/scan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Scan a file for malicious content using the configured provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pangea Security Services AI Guard AuthN API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuthN",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/user/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user account in the project's AuthN instance."
+        },
+        {
+          "info": {
+            "name": "List users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/user/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Look up users by scope and return a paginated list."
+        },
+        {
+          "info": {
+            "name": "Start a sign-up / sign-in flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/flow/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new authentication flow and return the available flow choices."
+        },
+        {
+          "info": {
+            "name": "Refresh a session.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/client/session/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh a session token using a refresh token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

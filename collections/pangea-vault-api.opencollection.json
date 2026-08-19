@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pangea Security Services AI Guard Vault API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vault",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Encrypt data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/encrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Encrypt a message using a key stored in Vault."
+        },
+        {
+          "info": {
+            "name": "Decrypt data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/decrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decrypt cipher text using a key stored in Vault."
+        },
+        {
+          "info": {
+            "name": "Store a secret.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{service}.{csp}.{geo}.pangea.cloud/v2/secret/store",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Store a secret value in Vault."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
