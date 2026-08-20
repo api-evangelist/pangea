@@ -83,6 +83,8 @@ apis:
   humanURL: https://pangea.cloud/docs/api/authn
   baseURL: https://authn.aws.us.pangea.cloud
   tags:
+  - Authn
+  tags_raw:
   - AuthN
   properties:
   - type: OpenAPI
