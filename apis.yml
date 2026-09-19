@@ -37,6 +37,12 @@ tags:
 - Security
 - AI Security
 - Authentication
+- Audit Logs
+- Data Protection
+tags_raw:
+- Security
+- AI Security
+- Authentication
 - Audit Log
 - Data Protection
 created: '2026-06-20'
