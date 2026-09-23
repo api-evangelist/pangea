@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Pangea Security Services AI Guard Vault API
-  description: Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.
+  title: Pangea Security Services Vault API
+  description: Specification of representative Pangea security service APIs.
   termsOfService: https://pangea.cloud/legal/terms-of-service/
   contact:
     name: Pangea Support
@@ -38,7 +38,7 @@ paths:
       operationId: vaultEncrypt
       tags:
       - Vault
-      summary: Encrypt data.
+      summary: Encrypt data
       description: Encrypt a message using a key stored in Vault.
       requestBody:
         required: true
@@ -67,7 +67,7 @@ paths:
       operationId: vaultDecrypt
       tags:
       - Vault
-      summary: Decrypt data.
+      summary: Decrypt data
       description: Decrypt cipher text using a key stored in Vault.
       requestBody:
         required: true
@@ -106,7 +106,7 @@ paths:
       operationId: vaultSecretStore
       tags:
       - Vault
-      summary: Store a secret.
+      summary: Store a secret
       description: Store a secret value in Vault.
       requestBody:
         required: true
@@ -133,7 +133,30 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
+    VaultEncryptRequest:
+      type: object
+      required:
+      - id
+      - plain_text
+      properties:
+        id:
+          type: string
+          description: The ID of the key to use.
+        plain_text:
+          type: string
+          description: Base64-encoded message to encrypt.
+        version:
+          type: integer
+        additional_data:
+          type: string
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -153,29 +176,6 @@ components:
           type: string
         result:
           type: object
-    VaultEncryptRequest:
-      type: object
-      required:
-      - id
-      - plain_text
-      properties:
-        id:
-          type: string
-          description: The ID of the key to use.
-        plain_text:
-          type: string
-          description: Base64-encoded message to encrypt.
-        version:
-          type: integer
-        additional_data:
-          type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http

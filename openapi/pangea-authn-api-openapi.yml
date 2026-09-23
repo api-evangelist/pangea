@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Pangea Security Services AI Guard AuthN API
-  description: Specification of representative Pangea security service APIs. Pangea exposes each security capability as its own REST service reachable at https://{service}.{csp}.{geo}.pangea.cloud (for example https://redact.aws.us.pangea.cloud). All requests are POST with a JSON body and are authenticated with a Bearer service token (or OAuth 2 access token) in the Authorization header. This document models several representative services - AuthN, Secure Audit Log, Redact, Vault, File Scan, IP Intel, Domain Intel, and AI Guard - and is not exhaustive of every endpoint or field.
+  title: Pangea Security Services Auth N API
+  description: Specification of representative Pangea security service APIs.
   termsOfService: https://pangea.cloud/legal/terms-of-service/
   contact:
     name: Pangea Support
@@ -23,7 +23,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: AuthN
+- name: Authn
   description: Hosted authentication, user lifecycle, and session management.
 paths:
   /v2/user/create:
@@ -37,8 +37,8 @@ paths:
     post:
       operationId: authnUserCreate
       tags:
-      - AuthN
-      summary: Create a user.
+      - Authn
+      summary: Create a user
       description: Create a new user account in the project's AuthN instance.
       requestBody:
         required: true
@@ -66,8 +66,8 @@ paths:
     post:
       operationId: authnUserList
       tags:
-      - AuthN
-      summary: List users.
+      - Authn
+      summary: List users
       description: Look up users by scope and return a paginated list.
       requestBody:
         required: true
@@ -95,8 +95,8 @@ paths:
     post:
       operationId: authnFlowStart
       tags:
-      - AuthN
-      summary: Start a sign-up / sign-in flow.
+      - Authn
+      summary: Start a sign-up / sign-in flow
       description: Initiate a new authentication flow and return the available flow choices.
       requestBody:
         required: true
@@ -137,8 +137,8 @@ paths:
     post:
       operationId: authnClientSessionRefresh
       tags:
-      - AuthN
-      summary: Refresh a session.
+      - Authn
+      summary: Refresh a session
       description: Refresh a session token using a refresh token.
       requestBody:
         required: true
@@ -164,20 +164,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    UserListRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-        last:
-          type: string
-        order:
-          type: string
-          enum:
-          - asc
-          - desc
-        size:
-          type: integer
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -228,6 +214,20 @@ components:
             type: string
         username:
           type: string
+    UserListRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+        last:
+          type: string
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+        size:
+          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.
