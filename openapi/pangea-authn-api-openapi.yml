@@ -163,7 +163,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
+    UserListRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+        last:
+          type: string
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+        size:
+          type: integer
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -183,6 +204,19 @@ components:
           type: string
         result:
           type: object
+    UserCreateRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+        profile:
+          type: object
+          additionalProperties:
+            type: string
+        username:
+          type: string
     UserResponse:
       allOf:
       - $ref: '#/components/schemas/PangeaResponse'
@@ -201,40 +235,6 @@ components:
                 type: boolean
               disabled:
                 type: boolean
-    UserCreateRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-        profile:
-          type: object
-          additionalProperties:
-            type: string
-        username:
-          type: string
-    UserListRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-        last:
-          type: string
-        order:
-          type: string
-          enum:
-          - asc
-          - desc
-        size:
-          type: integer
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http

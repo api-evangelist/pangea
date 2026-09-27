@@ -76,6 +76,25 @@ components:
           type: string
         result:
           type: object
+    AiGuardResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              blocked:
+                type: boolean
+              transformed:
+                type: boolean
+              recipe:
+                type: string
+              detectors:
+                type: object
+                description: Per-detector analysis (prompt_injection, pii, secrets, malicious_entity).
+              prompt_text:
+                type: string
     AiGuardRequest:
       type: object
       properties:
@@ -97,25 +116,6 @@ components:
         debug:
           type: boolean
           default: false
-    AiGuardResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              blocked:
-                type: boolean
-              transformed:
-                type: boolean
-              recipe:
-                type: string
-              detectors:
-                type: object
-                description: Per-detector analysis (prompt_injection, pii, secrets, malicious_entity).
-              prompt_text:
-                type: string
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

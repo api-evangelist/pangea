@@ -162,41 +162,25 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AuditSearchRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-        start:
-          type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
-        max_results:
-          type: integer
-        order:
-          type: string
-          enum:
-          - asc
-          - desc
-        config_id:
-          type: string
-    AuditLogRequest:
+    AuditEvent:
       type: object
       properties:
-        event:
-          $ref: '#/components/schemas/AuditEvent'
-        verbose:
-          type: boolean
-        signature:
+        message:
           type: string
-        public_key:
+          description: Main log message.
+        actor:
           type: string
-        config_id:
+        action:
           type: string
+        target:
+          type: string
+        status:
+          type: string
+        source:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -234,25 +218,41 @@ components:
                 type: array
                 items:
                   type: string
-    AuditEvent:
+    AuditLogRequest:
       type: object
       properties:
-        message:
+        event:
+          $ref: '#/components/schemas/AuditEvent'
+        verbose:
+          type: boolean
+        signature:
           type: string
-          description: Main log message.
-        actor:
+        public_key:
           type: string
-        action:
+        config_id:
           type: string
-        target:
+    AuditSearchRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
           type: string
-        status:
-          type: string
-        source:
-          type: string
-        timestamp:
+        start:
           type: string
           format: date-time
+        end:
+          type: string
+          format: date-time
+        max_results:
+          type: integer
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+        config_id:
+          type: string
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

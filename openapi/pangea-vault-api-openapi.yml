@@ -133,30 +133,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   schemas:
-    VaultEncryptRequest:
-      type: object
-      required:
-      - id
-      - plain_text
-      properties:
-        id:
-          type: string
-          description: The ID of the key to use.
-        plain_text:
-          type: string
-          description: Base64-encoded message to encrypt.
-        version:
-          type: integer
-        additional_data:
-          type: string
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -176,6 +153,29 @@ components:
           type: string
         result:
           type: object
+    VaultEncryptRequest:
+      type: object
+      required:
+      - id
+      - plain_text
+      properties:
+        id:
+          type: string
+          description: The ID of the key to use.
+        plain_text:
+          type: string
+          description: Base64-encoded message to encrypt.
+        version:
+          type: integer
+        additional_data:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http

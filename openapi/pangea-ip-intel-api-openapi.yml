@@ -105,6 +105,23 @@ components:
           type: string
         result:
           type: object
+    IpIntelRequest:
+      type: object
+      required:
+      - ips
+      properties:
+        ips:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            type: string
+        provider:
+          type: string
+        verbose:
+          type: boolean
+        raw:
+          type: boolean
     IntelResponse:
       allOf:
       - $ref: '#/components/schemas/PangeaResponse'
@@ -127,23 +144,6 @@ components:
                       type: string
               raw_data:
                 type: object
-    IpIntelRequest:
-      type: object
-      required:
-      - ips
-      properties:
-        ips:
-          type: array
-          minItems: 1
-          maxItems: 100
-          items:
-            type: string
-        provider:
-          type: string
-        verbose:
-          type: boolean
-        raw:
-          type: boolean
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

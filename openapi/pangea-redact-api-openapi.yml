@@ -103,6 +103,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    RedactResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              redacted_text:
+                type: string
+              count:
+                type: integer
+              report:
+                type: object
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -122,20 +136,6 @@ components:
           type: string
         result:
           type: object
-    RedactResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              redacted_text:
-                type: string
-              count:
-                type: integer
-              report:
-                type: object
     RedactRequest:
       type: object
       required:
