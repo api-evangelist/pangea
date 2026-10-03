@@ -103,6 +103,28 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    RedactRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: The content to redact.
+        config_id:
+          type: string
+        rules:
+          type: array
+          items:
+            type: string
+        rulesets:
+          type: array
+          items:
+            type: string
+        return_result:
+          type: boolean
+        debug:
+          type: boolean
     RedactResponse:
       allOf:
       - $ref: '#/components/schemas/PangeaResponse'
@@ -136,28 +158,6 @@ components:
           type: string
         result:
           type: object
-    RedactRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: The content to redact.
-        config_id:
-          type: string
-        rules:
-          type: array
-          items:
-            type: string
-        rulesets:
-          type: array
-          items:
-            type: string
-        return_result:
-          type: boolean
-        debug:
-          type: boolean
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

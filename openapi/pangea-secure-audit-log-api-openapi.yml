@@ -200,37 +200,6 @@ components:
           type: string
         result:
           type: object
-    AuditLogResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              hash:
-                type: string
-              unpublished_root:
-                type: string
-              membership_proof:
-                type: string
-              consistency_proof:
-                type: array
-                items:
-                  type: string
-    AuditLogRequest:
-      type: object
-      properties:
-        event:
-          $ref: '#/components/schemas/AuditEvent'
-        verbose:
-          type: boolean
-        signature:
-          type: string
-        public_key:
-          type: string
-        config_id:
-          type: string
     AuditSearchRequest:
       type: object
       required:
@@ -253,6 +222,37 @@ components:
           - desc
         config_id:
           type: string
+    AuditLogRequest:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/AuditEvent'
+        verbose:
+          type: boolean
+        signature:
+          type: string
+        public_key:
+          type: string
+        config_id:
+          type: string
+    AuditLogResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              hash:
+                type: string
+              unpublished_root:
+                type: string
+              membership_proof:
+                type: string
+              consistency_proof:
+                type: array
+                items:
+                  type: string
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

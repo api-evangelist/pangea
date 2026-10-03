@@ -85,7 +85,36 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
+    IntelResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  verdict:
+                    type: string
+                    example: malicious
+                  score:
+                    type: integer
+                  category:
+                    type: array
+                    items:
+                      type: string
+              raw_data:
+                type: object
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -122,35 +151,6 @@ components:
           type: boolean
         raw:
           type: boolean
-    IntelResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  verdict:
-                    type: string
-                    example: malicious
-                  score:
-                    type: integer
-                  category:
-                    type: array
-                    items:
-                      type: string
-              raw_data:
-                type: object
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http

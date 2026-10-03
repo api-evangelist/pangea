@@ -58,26 +58,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
-    PangeaResponse:
-      type: object
-      description: Standard Pangea response envelope wrapping every service result.
-      properties:
-        request_id:
-          type: string
-        request_time:
-          type: string
-          format: date-time
-        response_time:
-          type: string
-          format: date-time
-        status:
-          type: string
-          example: Success
-        summary:
-          type: string
-        result:
-          type: object
     FileScanRequest:
       type: object
       properties:
@@ -122,13 +110,25 @@ components:
                       type: string
               raw_data:
                 type: object
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
   securitySchemes:
     bearerAuth:
       type: http
