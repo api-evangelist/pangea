@@ -163,13 +163,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   schemas:
     PangeaResponse:
       type: object
@@ -208,19 +201,6 @@ components:
                 type: boolean
               disabled:
                 type: boolean
-    UserCreateRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-        profile:
-          type: object
-          additionalProperties:
-            type: string
-        username:
-          type: string
     UserListRequest:
       type: object
       properties:
@@ -235,6 +215,26 @@ components:
           - desc
         size:
           type: integer
+    UserCreateRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+        profile:
+          type: object
+          additionalProperties:
+            type: string
+        username:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http

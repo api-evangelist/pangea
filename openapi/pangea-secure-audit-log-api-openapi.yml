@@ -162,25 +162,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AuditEvent:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Main log message.
-        actor:
-          type: string
-        action:
-          type: string
-        target:
-          type: string
-        status:
-          type: string
-        source:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -200,28 +181,25 @@ components:
           type: string
         result:
           type: object
-    AuditSearchRequest:
+    AuditEvent:
       type: object
-      required:
-      - query
       properties:
-        query:
+        message:
           type: string
-        start:
+          description: Main log message.
+        actor:
+          type: string
+        action:
+          type: string
+        target:
+          type: string
+        status:
+          type: string
+        source:
+          type: string
+        timestamp:
           type: string
           format: date-time
-        end:
-          type: string
-          format: date-time
-        max_results:
-          type: integer
-        order:
-          type: string
-          enum:
-          - asc
-          - desc
-        config_id:
-          type: string
     AuditLogRequest:
       type: object
       properties:
@@ -253,6 +231,28 @@ components:
                 type: array
                 items:
                   type: string
+    AuditSearchRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        max_results:
+          type: integer
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+        config_id:
+          type: string
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

@@ -102,6 +102,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
     RedactRequest:
       type: object
@@ -125,20 +132,6 @@ components:
           type: boolean
         debug:
           type: boolean
-    RedactResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              redacted_text:
-                type: string
-              count:
-                type: integer
-              report:
-                type: object
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -158,13 +151,20 @@ components:
           type: string
         result:
           type: object
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
+    RedactResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              redacted_text:
+                type: string
+              count:
+                type: integer
+              report:
+                type: object
   securitySchemes:
     bearerAuth:
       type: http

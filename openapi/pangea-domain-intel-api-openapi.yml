@@ -65,13 +65,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   schemas:
     IntelResponse:
       allOf:
@@ -114,6 +107,13 @@ components:
           type: string
         result:
           type: object
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http

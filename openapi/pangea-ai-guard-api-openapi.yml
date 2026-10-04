@@ -57,44 +57,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AiGuardResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              blocked:
-                type: boolean
-              transformed:
-                type: boolean
-              recipe:
-                type: string
-              detectors:
-                type: object
-                description: Per-detector analysis (prompt_injection, pii, secrets, malicious_entity).
-              prompt_text:
-                type: string
-    PangeaResponse:
-      type: object
-      description: Standard Pangea response envelope wrapping every service result.
-      properties:
-        request_id:
-          type: string
-        request_time:
-          type: string
-          format: date-time
-        response_time:
-          type: string
-          format: date-time
-        status:
-          type: string
-          example: Success
-        summary:
-          type: string
-        result:
-          type: object
     AiGuardRequest:
       type: object
       properties:
@@ -116,6 +78,44 @@ components:
         debug:
           type: boolean
           default: false
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
+    AiGuardResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              blocked:
+                type: boolean
+              transformed:
+                type: boolean
+              recipe:
+                type: string
+              detectors:
+                type: object
+                description: Per-detector analysis (prompt_injection, pii, secrets, malicious_entity).
+              prompt_text:
+                type: string
   responses:
     Unauthorized:
       description: Missing or invalid authentication token.

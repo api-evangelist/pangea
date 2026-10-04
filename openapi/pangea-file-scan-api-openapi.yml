@@ -58,36 +58,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
   schemas:
-    FileScanRequest:
-      type: object
-      properties:
-        provider:
-          type: string
-        verbose:
-          type: boolean
-        raw:
-          type: boolean
-        transfer_method:
-          type: string
-          enum:
-          - direct
-          - multipart
-          - post-url
-          - source-url
-        sha256:
-          type: string
-        size:
-          type: integer
-        source_url:
-          type: string
     IntelResponse:
       allOf:
       - $ref: '#/components/schemas/PangeaResponse'
@@ -110,6 +81,28 @@ components:
                       type: string
               raw_data:
                 type: object
+    FileScanRequest:
+      type: object
+      properties:
+        provider:
+          type: string
+        verbose:
+          type: boolean
+        raw:
+          type: boolean
+        transfer_method:
+          type: string
+          enum:
+          - direct
+          - multipart
+          - post-url
+          - source-url
+        sha256:
+          type: string
+        size:
+          type: integer
+        source_url:
+          type: string
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -129,6 +122,13 @@ components:
           type: string
         result:
           type: object
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   securitySchemes:
     bearerAuth:
       type: http
