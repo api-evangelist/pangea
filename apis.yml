@@ -420,6 +420,9 @@ apis:
   - type: APIReference
     url: https://pangea.cloud/docs/api/ai-guard
 common:
+- type: CapabilityMap
+  url: capabilities/pangea-capability-edges.yml
+  name: Pangea Business Capability Map
 - type: AgenticAccess
   url: agentic-access/pangea-agentic-access.yml
 - type: TrustCenter

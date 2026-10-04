@@ -1,0 +1,74 @@
+slug: pangea
+provider: Pangea
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Authn
+  spec_file: pangea-authn-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /v2/user/create  authnUserCreate  Create a user; POST /v2/flow/start  Start a sign-up
+    / sign-in flow; POST /v2/client/session/refresh  Refresh a session
+  reason: User creation/listing, sign-up/sign-in flows and session refresh are textbook identity and access
+    management operations delivered as a service.
+- tag: Domain Intel
+  spec_file: pangea-domain-intel-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.78
+  evidence: POST /v1/reputation  domainReputation  Get domain reputation; schema IntelResponse
+  reason: Domain reputation lookup is threat-intelligence enrichment used for detection and response.
+    Mapped to Threat Detection & Response as the nearest fit; some ambiguity since it is an intel feed
+    rather than SOC/incident tooling.
+- tag: IP Intel
+  spec_file: pangea-ip-intel-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.75
+  evidence: POST /v2/reputation  ipReputation  Get IP reputation; POST /v2/geolocate  ipGeolocate
+  reason: IP reputation and geolocation lookups are threat-intelligence enrichment feeding detection decisions,
+    so Threat Detection & Response is the best-supported sub-capability.
+- tag: File Scan
+  spec_file: pangea-file-scan-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.72
+  evidence: POST /v1/scan  fileScan  Scan a file; schemas FileScanRequest, IntelResponse
+  reason: File scanning for malicious content is a security detection control. Threat Detection & Response
+    is the closest L2, though malware scanning could also be argued as a separate control category.
+- tag: Redact
+  spec_file: pangea-redact-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /v1/redact redactText Redact text; POST /v1/redact_structured Redact structured data
+  reason: Redaction of sensitive data in text/structured payloads is a security/data-protection control
+    service. L1 Cybersecurity Management fits; no L2 cleanly covers data redaction (could also touch privacy),
+    so L2 abstained.
+- tag: Vault
+  spec_file: pangea-vault-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /v2/encrypt vaultEncrypt Encrypt data; POST /v2/secret/store vaultSecretStore Store a
+    secret
+  reason: Encryption and secret storage service — a security capability. Could map to BC-4210.60 Configuration
+    & Secrets Management but this is a standalone security service rather than SaaS release config, so
+    L2 abstained.
