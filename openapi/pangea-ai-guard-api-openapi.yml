@@ -56,28 +56,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
-    AiGuardRequest:
-      type: object
-      properties:
-        text:
-          type: string
-          description: Plain text input (up to 20 KiB).
-        messages:
-          type: array
-          items:
-            type: object
-            properties:
-              role:
-                type: string
-              content:
-                type: string
-        recipe:
-          type: string
-          default: pangea_prompt_guard
-        debug:
-          type: boolean
-          default: false
     PangeaResponse:
       type: object
       description: Standard Pangea response envelope wrapping every service result.
@@ -116,13 +102,27 @@ components:
                 description: Per-detector analysis (prompt_injection, pii, secrets, malicious_entity).
               prompt_text:
                 type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
+    AiGuardRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Plain text input (up to 20 KiB).
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+              content:
+                type: string
+        recipe:
+          type: string
+          default: pangea_prompt_guard
+        debug:
+          type: boolean
+          default: false
   securitySchemes:
     bearerAuth:
       type: http

@@ -161,6 +161,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid authentication token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PangeaResponse'
   schemas:
     PangeaResponse:
       type: object
@@ -200,19 +207,6 @@ components:
         timestamp:
           type: string
           format: date-time
-    AuditLogRequest:
-      type: object
-      properties:
-        event:
-          $ref: '#/components/schemas/AuditEvent'
-        verbose:
-          type: boolean
-        signature:
-          type: string
-        public_key:
-          type: string
-        config_id:
-          type: string
     AuditLogResponse:
       allOf:
       - $ref: '#/components/schemas/PangeaResponse'
@@ -253,13 +247,19 @@ components:
           - desc
         config_id:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid authentication token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PangeaResponse'
+    AuditLogRequest:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/AuditEvent'
+        verbose:
+          type: boolean
+        signature:
+          type: string
+        public_key:
+          type: string
+        config_id:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

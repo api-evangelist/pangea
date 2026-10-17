@@ -110,6 +110,39 @@ components:
           schema:
             $ref: '#/components/schemas/PangeaResponse'
   schemas:
+    RedactResponse:
+      allOf:
+      - $ref: '#/components/schemas/PangeaResponse'
+      - type: object
+        properties:
+          result:
+            type: object
+            properties:
+              redacted_text:
+                type: string
+              count:
+                type: integer
+              report:
+                type: object
+    PangeaResponse:
+      type: object
+      description: Standard Pangea response envelope wrapping every service result.
+      properties:
+        request_id:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: Success
+        summary:
+          type: string
+        result:
+          type: object
     RedactRequest:
       type: object
       required:
@@ -132,39 +165,6 @@ components:
           type: boolean
         debug:
           type: boolean
-    PangeaResponse:
-      type: object
-      description: Standard Pangea response envelope wrapping every service result.
-      properties:
-        request_id:
-          type: string
-        request_time:
-          type: string
-          format: date-time
-        response_time:
-          type: string
-          format: date-time
-        status:
-          type: string
-          example: Success
-        summary:
-          type: string
-        result:
-          type: object
-    RedactResponse:
-      allOf:
-      - $ref: '#/components/schemas/PangeaResponse'
-      - type: object
-        properties:
-          result:
-            type: object
-            properties:
-              redacted_text:
-                type: string
-              count:
-                type: integer
-              report:
-                type: object
   securitySchemes:
     bearerAuth:
       type: http
