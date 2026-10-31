@@ -1,4 +1,4 @@
-# Pangea (pangea)
+# Pangea
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,202 +66,131 @@
 
 Pangea delivers security as a set of composable, API-first services - authentication (AuthN/AuthZ), tamper-proof Secure Audit Log, Redact, Vault, File Scan, URL/Domain/IP Intel, Embargo, Sanitize, and AI Guard / Prompt Guard - that developers call over REST with a Bearer service token to add security guardrails to applications and AI workloads.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/pangea/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/pangea/refs/heads/main/apis.yml)
+**Areas:** Security · AI Security · Authentication · Audit Logs · Data Protection
 
-## Tags
+## Pangea on APIs.io
 
-- Security
-- AI Security
-- Authentication
-- Audit Log
-- Data Protection
+Everything profiled for Pangea is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pangea/](https://apis.io/providers/pangea/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (8)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Pangea AI Guard API](https://apis.io/apis/pangea/pangea-ai-guard-api/) — Detect and redact malicious content in LLM inputs and outputs.
+- [Pangea AuthN API](https://apis.io/apis/pangea/pangea-authn-api/) — Hosted authentication, user lifecycle, and session management.
+- [Pangea Domain Intel API](https://apis.io/apis/pangea/pangea-domain-intel-api/) — Domain and URL reputation lookups.
+- [Pangea File Scan API](https://apis.io/apis/pangea/pangea-file-scan-api/) — Scan files for malicious content.
+- [Pangea IP Intel API](https://apis.io/apis/pangea/pangea-ip-intel-api/) — IP reputation, geolocation, and VPN/proxy enrichment.
+- [Pangea Redact API](https://apis.io/apis/pangea/pangea-redact-api/) — Detect and remove sensitive information from text and structured data.
+- [Pangea Secure Audit Log API](https://apis.io/apis/pangea/pangea-secure-audit-log-api/) — Tamper-proof, cryptographically verifiable audit logging.
+- [Pangea Vault API](https://apis.io/apis/pangea/pangea-vault-api/) — Secrets and cryptographic key management.
 
-## APIs
+### Published properties
 
-### Pangea AuthN API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Hosted user authentication and identity - sign-up/sign-in flows, user lifecycle, session and client-token management, and JWKS - exposed as REST and secured with a Bearer service token.
+#### Agentic access (1)
 
-- **Human URL:** [https://pangea.cloud/docs/api/authn](https://pangea.cloud/docs/api/authn)
-- **Base URL:** `https://authn.aws.us.pangea.cloud`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Pangea Agentic Access](https://apis.io/agentic-access/pangea/pangea-agentic-access/)
 
-- Authentication
-- Identity
-- Sessions
+#### Collections (9)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://pangea.cloud/docs/authn)
-- [API Reference](https://pangea.cloud/docs/api/authn)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Pangea Security Services API](https://apis.io/collections/pangea/open-pangea/)
+- [Pangea Security Services AI Guard API](https://apis.io/collections/pangea/open-pangea-ai-guard-api/)
+- [Pangea Security Services AI Guard AuthN API](https://apis.io/collections/pangea/open-pangea-authn-api/)
+- [Pangea Security Services AI Guard Domain Intel API](https://apis.io/collections/pangea/open-pangea-domain-intel-api/)
+- [Pangea Security Services AI Guard File Scan API](https://apis.io/collections/pangea/open-pangea-file-scan-api/)
+- [Pangea Security Services AI Guard IP Intel API](https://apis.io/collections/pangea/open-pangea-ip-intel-api/)
+- [Pangea Security Services AI Guard Redact API](https://apis.io/collections/pangea/open-pangea-redact-api/)
+- [Pangea Security Services AI Guard Secure Audit Log API](https://apis.io/collections/pangea/open-pangea-secure-audit-log-api/)
+- [Pangea Security Services AI Guard Vault API](https://apis.io/collections/pangea/open-pangea-vault-api/)
 
-### Pangea Secure Audit Log API
+#### Security (3)
 
-Tamper-proof, cryptographically verifiable audit logging with Merkle-tree membership and consistency proofs, log entry creation, search, results paging, and export.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://pangea.cloud/docs/api/audit](https://pangea.cloud/docs/api/audit)
-- **Base URL:** `https://audit.aws.us.pangea.cloud`
+- [Pangea Authentication](https://apis.io/security/pangea/pangea-authentication/)
+- [Pangea Domain Security](https://apis.io/security/pangea/pangea-domain-security/)
+- [Pangea Trust Center](https://apis.io/security/pangea/pangea-trust-center/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Audit Log
-- Tamper Proof
-- Compliance
+Published plans, tiers and prices.
 
-#### Properties
+- [Pangea Plans Pricing](https://apis.io/plans/pangea/pangea-plans-pricing/)
 
-- [Documentation](https://pangea.cloud/docs/audit)
-- [API Reference](https://pangea.cloud/docs/api/audit)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Pangea Redact API
+Published request limits.
 
-Detect and remove sensitive information (PII, secrets) from text and structured data using configurable rulesets, with format-preserving encryption and unredact support.
+- [Pangea Rate Limits](https://apis.io/rate-limits/pangea/pangea-rate-limits/)
 
-- **Human URL:** [https://pangea.cloud/docs/api/redact](https://pangea.cloud/docs/api/redact)
-- **Base URL:** `https://redact.aws.us.pangea.cloud`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Redaction
-- PII
-- Data Protection
+- [Pangea Finops](https://apis.io/finops/pangea/pangea-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://pangea.cloud/docs/redact)
-- [API Reference](https://pangea.cloud/docs/api/redact)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Pangea Vault API
-
-Secure storage and lifecycle management for secrets and cryptographic keys with encrypt/decrypt, sign/verify, rotation, and JWT/JWK operations.
-
-- **Human URL:** [https://pangea.cloud/docs/api/vault](https://pangea.cloud/docs/api/vault)
-- **Base URL:** `https://vault.aws.us.pangea.cloud`
-
-#### Tags
-
-- Secrets
-- Key Management
-- Encryption
-
-#### Properties
-
-- [Documentation](https://pangea.cloud/docs/vault)
-- [API Reference](https://pangea.cloud/docs/api/vault)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pangea File Scan API
-
-Scan uploaded files (PE, Mach-O, ELF, Office, PDF, ZIP) for malicious content using configured threat-detection providers, returning a verdict, score, and category.
-
-- **Human URL:** [https://pangea.cloud/docs/api/file-scan](https://pangea.cloud/docs/api/file-scan)
-- **Base URL:** `https://file-scan.aws.us.pangea.cloud`
-
-#### Tags
-
-- File Scan
-- Malware
-- Threat Detection
-
-#### Properties
-
-- [Documentation](https://pangea.cloud/docs/file-scan)
-- [API Reference](https://pangea.cloud/docs/api/file-scan)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pangea IP Intel API
-
-IP address threat intelligence - reputation scoring, geolocation, and VPN/proxy/domain enrichment - drawn from multiple providers and normalized to a Pangea verdict and score.
-
-- **Human URL:** [https://pangea.cloud/docs/api/ip-intel](https://pangea.cloud/docs/api/ip-intel)
-- **Base URL:** `https://ip-intel.aws.us.pangea.cloud`
-
-#### Tags
-
-- Threat Intel
-- IP Reputation
-- Geolocation
-
-#### Properties
-
-- [Documentation](https://pangea.cloud/docs/ip-intel)
-- [API Reference](https://pangea.cloud/docs/api/ip-intel)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pangea Domain & URL Intel API
-
-Reputation lookups for domains and URLs against threat-intelligence providers, returning normalized verdicts, scores, and categories to flag malicious indicators.
-
-- **Human URL:** [https://pangea.cloud/docs/api/domain-intel](https://pangea.cloud/docs/api/domain-intel)
-- **Base URL:** `https://domain-intel.aws.us.pangea.cloud`
-
-#### Tags
-
-- Threat Intel
-- Domain Reputation
-- URL Reputation
-
-#### Properties
-
-- [Documentation](https://pangea.cloud/docs/domain-intel)
-- [API Reference](https://pangea.cloud/docs/api/domain-intel)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pangea AI Guard & Prompt Guard API
-
-Detect, redact, or block malicious content and intent in LLM inputs and outputs - prompt injection, PII, secrets, and malicious entities - via configurable recipes to guard AI applications.
-
-- **Human URL:** [https://pangea.cloud/docs/api/ai-guard](https://pangea.cloud/docs/api/ai-guard)
-- **Base URL:** `https://ai-guard.aws.us.pangea.cloud`
-
-#### Tags
-
-- AI Security
-- Prompt Injection
-- LLM Guardrails
-
-#### Properties
-
-- [Documentation](https://pangea.cloud/docs/ai-guard)
-- [API Reference](https://pangea.cloud/docs/api/ai-guard)
-- [OpenAPI](openapi/pangea-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pangea.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pangea.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/pangeacyber)
-- [LinkedIn](https://www.linkedin.com/company/pangeacyber)
 - [Website](https://pangea.cloud/)
 - [Documentation](https://pangea.cloud/docs/)
-- [Plans](plans/pangea-plans-pricing.yml)
-- [Rate Limits](rate-limits/pangea-rate-limits.yml)
-- [Fin Ops](finops/pangea-finops.yml)
+- [Blog](https://pangea.cloud/blog)
+- [GitHub](https://github.com/pangeacyber)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 15.8 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pangea/](https://apis.io/providers/pangea/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pangea: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pangea/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
